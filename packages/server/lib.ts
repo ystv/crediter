@@ -1,6 +1,6 @@
 import {
-  createServer as createHttpServer,
-  type Server as HttpServer,
+	createServer as createHttpServer,
+	type Server as HttpServer,
 } from "node:http";
 import { exit } from "node:process";
 import { db } from "@repo/lib/db";
@@ -8,36 +8,36 @@ import type { RequestHandler } from "next/dist/server/next";
 import { sql } from "@repo/lib/db/generated/prisma/internal/prismaNamespace";
 
 export async function checkDatabaseConnection() {
-  let connectionAttempts = 1;
+	let connectionAttempts = 1;
 
-  while (connectionAttempts <= 3) {
-    try {
-      await db.$executeRaw(sql`SELECT 1;`);
-      return;
-    } catch (e) {
-      console.error(
-        `Database connection attempt ${connectionAttempts} failed, retrying...`
-      );
-      await sleep(5000);
-    }
-    connectionAttempts += 1;
-  }
-  if (connectionAttempts > 3) {
-    console.error(
-      "Connection to database failed, exiting. Please check your configuration."
-    );
-    exit(1);
-  }
+	while (connectionAttempts <= 3) {
+		try {
+			await db.$executeRaw(sql`SELECT 1;`);
+			return;
+		} catch (e) {
+			console.error(
+				`Database connection attempt ${connectionAttempts} failed, retrying...`,
+			);
+			await sleep(5000);
+		}
+		connectionAttempts += 1;
+	}
+	if (connectionAttempts > 3) {
+		console.error(
+			"Connection to database failed, exiting. Please check your configuration.",
+		);
+		exit(1);
+	}
 }
 
 export async function prepareHttpServer(
-  handler: RequestHandler
+	handler: RequestHandler,
 ): Promise<HttpServer> {
-  const httpServer = createHttpServer(handler);
+	const httpServer = createHttpServer(handler);
 
-  return httpServer;
+	return httpServer;
 }
 
 function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }

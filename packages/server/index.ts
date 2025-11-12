@@ -1,10 +1,10 @@
 import next from "next";
 
-// import { authenticateSocket } from "./auth";
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
 import { Server } from "socket.io";
 import { checkDatabaseConnection, prepareHttpServer } from "./lib";
+import { authenticateSocket } from "./auth";
 // import { isMinioEnabled, getMinioClient } from "../lib/minio";
 // import { setupActionHandlers } from "../lib/slack/actions";
 // import {
@@ -31,7 +31,7 @@ app.prepare().then(async () => {
 	io = new Server(httpServer);
 	(globalThis as unknown as { io: Server }).io = io;
 
-	// io.use(authenticateSocket);
+	io.use(authenticateSocket);
 
 	io.on("connection", async (socket) => {
 		// if (socket.data.auth.invalidSession === true) {

@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "postinstall": "prisma generate",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "db:generate": "dotenv -e ../../.env prisma generate",
+    "db:migrate": "dotenv -e ../../.env prisma migrate deploy",
+    "db:push": "dotenv -e ../../.env prisma db push"
   },
   "dependencies": {
     "@prisma/client": "6.18.0",
