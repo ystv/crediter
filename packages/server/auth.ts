@@ -14,8 +14,6 @@ export async function authenticateSocket(
 
 	const cookie = parseCookie(socket.client.request.headers.cookie);
 
-	console.log(cookie);
-
 	const sessionCookie: string | undefined = cookie["authjs.session-token"];
 
 	if (sessionCookie) {
@@ -27,8 +25,6 @@ export async function authenticateSocket(
 				user: true,
 			},
 		});
-
-		console.log(session);
 	} else {
 	}
 

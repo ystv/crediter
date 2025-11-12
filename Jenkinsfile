@@ -71,7 +71,7 @@ pipeline {
         ], wait: true
         deployPreview action: 'cleanup'
         deployPreview action: 'cleanupMerge'
-        sh "nomad alloc exec -task crediter -job crediter npx -y prisma migrate deploy"
+        sh "nomad alloc exec -task crediter-dev -job crediter-dev npx -y prisma migrate deploy"
       }
     }
 
