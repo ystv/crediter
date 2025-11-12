@@ -1,0 +1,44 @@
+{
+  "name": "experimental-hypothetical-new-credits-site-idea",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/database",
+    "packages/lib",
+    "packages/next",
+    "packages/server"
+  ],
+  "scripts": {
+    "dev": "nodemon",
+    "db:generate": "prisma migrate dev",
+    "db:migrate": "prisma migrate deploy",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "build:all": "yarn build:lib && yarn build:next && yarn build:server",
+    "build:lib": "cd packages/lib && yarn run build",
+    "build:next": "cd packages/next && yarn run build",
+    "build:server": "yarn build:server:compile",
+    "build:server:compile": "cd packages/server && tsc -p tsconfig.build.json",
+    "preinstall": "yarn constraints --fix"
+  },
+  "dependencies": {
+    "@prisma/client": "6.18.0",
+    "@yarnpkg/types": "^4.0.1",
+    "next": "^15.2.3"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@vercel/ncc": "^0.38.4",
+    "dotenv": "^17.2.3",
+    "dotenv-cli": "^11.0.0",
+    "nodemon": "^3.1.11",
+    "prisma": "6.18.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5",
+    "zod": "^4.1.12"
+  },
+  "packageManager": "yarn@4.10.3"
+}
