@@ -16,16 +16,14 @@ const envSchema = z.object({
 	KEYCLOAK_ISSUER: z.string(),
 });
 
-export function validateEnv(
-	env?: any,
-): NodeJS.ProcessEnv | z.infer<typeof envSchema> {
+export function validateEnv(): NodeJS.ProcessEnv | z.infer<typeof envSchema> {
 	if (process.env.SKIP_ENV_VALIDATION === "1") return process.env;
 	const envResult = envSchema.safeParse(env ?? process.env);
 	if (!envResult.success) {
 		console.error("Error: Bad env configuration");
 		for (const error of envResult.error.issues) {
 			console.error(
-				`   variable ${error.path.join(".")} ${error.code}, ${error.message}`,
+				`  - variable ${error.path.join(".")} ${error.code}, ${error.message}`,
 			);
 		}
 		exit(1);

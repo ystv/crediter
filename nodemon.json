@@ -2,6 +2,6 @@
   "watch": [
     "packages/server/**/*.ts"
   ],
-  "exec": "tsx packages/server/index.ts",
+  "exec": "tsx packages/server/src/index.ts",
   "ext": "js ts"
 }

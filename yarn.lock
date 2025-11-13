@@ -2084,27 +2084,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"experimental-hypothetical-new-credits-site-idea@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "experimental-hypothetical-new-credits-site-idea@workspace:."
-  dependencies:
-    "@prisma/client": "npm:6.18.0"
-    "@types/bun": "npm:latest"
-    "@vercel/ncc": "npm:^0.38.4"
-    "@yarnpkg/types": "npm:^4.0.1"
-    dotenv: "npm:^17.2.3"
-    dotenv-cli: "npm:^11.0.0"
-    next: "npm:^15.2.3"
-    nodemon: "npm:^3.1.11"
-    prisma: "npm:6.18.0"
-    socket.io: "npm:^4.8.1"
-    socket.io-client: "npm:^4.8.1"
-    tsx: "npm:^4.20.6"
-    typescript: "npm:^5"
-    zod: "npm:^4.1.12"
-  languageName: unknown
-  linkType: soft
-
 "exponential-backoff@npm:^3.1.1":
   version: 3.1.3
   resolution: "exponential-backoff@npm:3.1.3"
@@ -4113,6 +4092,27 @@ __metadata:
   checksum: 10c0/a499c81ce6d4a1d260d4ea0f6d49ab4da09681e32c3f0472dee16667ed69d01dae63a3b81745a24bd78476ec4fcf856114cb4896ace738e01da34b2c42235416
   languageName: node
   linkType: hard
+
+"ystv-crediter@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "ystv-crediter@workspace:."
+  dependencies:
+    "@prisma/client": "npm:6.18.0"
+    "@types/bun": "npm:latest"
+    "@vercel/ncc": "npm:^0.38.4"
+    "@yarnpkg/types": "npm:^4.0.1"
+    dotenv: "npm:^17.2.3"
+    dotenv-cli: "npm:^11.0.0"
+    next: "npm:^15.2.3"
+    nodemon: "npm:^3.1.11"
+    prisma: "npm:6.18.0"
+    socket.io: "npm:^4.8.1"
+    socket.io-client: "npm:^4.8.1"
+    tsx: "npm:^4.20.6"
+    typescript: "npm:^5"
+    zod: "npm:^4.1.12"
+  languageName: unknown
+  linkType: soft
 
 "zod@npm:^4.1.12":
   version: 4.1.12

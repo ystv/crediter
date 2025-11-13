@@ -1,5 +1,5 @@
 {
-  "name": "experimental-hypothetical-new-credits-site-idea",
+  "name": "ystv-crediter",
   "module": "index.ts",
   "type": "module",
   "private": true,
