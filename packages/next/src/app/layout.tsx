@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { AppLayout } from "./_components/app-shell";
 import { SessionProvider } from "next-auth/react";
+import { auth, signIn } from "@/server/auth";
 
 export const metadata: Metadata = {
   title: "YSTV Crediter",
@@ -18,10 +19,15 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // const session = await auth();
+  const session = await auth();
+
+  if (!session) {
+    return signIn();
+  }
+
   return (
     <html
       lang="en"
