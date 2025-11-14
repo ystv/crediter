@@ -14,7 +14,7 @@ export async function checkDatabaseConnection() {
 		try {
 			await db.$executeRaw(sql`SELECT 1;`);
 			return;
-		} catch (e) {
+		} catch (_e) {
 			console.error(
 				`Database connection attempt ${connectionAttempts} failed, retrying...`,
 			);

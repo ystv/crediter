@@ -1,5 +1,5 @@
+import { exit } from "node:process";
 import dotenv from "dotenv";
-import { exit } from "process";
 import { z } from "zod";
 
 dotenv.config({ quiet: true });

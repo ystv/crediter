@@ -1,4 +1,4 @@
-const plugin = require("tailwindcss/plugin");
+const _plugin = require("tailwindcss/plugin");
 
 // const mantineVariantsPlugin = plugin(function ({ addVariant }) {
 //   addVariant("success", `&[data-variant="success"]`);

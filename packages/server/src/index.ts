@@ -33,7 +33,7 @@ app.prepare().then(async () => {
 
 	io.use(authenticateSocket);
 
-	io.on("connection", async (socket) => {
+	io.on("connection", async (_socket) => {
 		// if (socket.data.auth.invalidSession === true) {
 		//   socket.emit("invalidSession");
 		// }

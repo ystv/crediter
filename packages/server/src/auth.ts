@@ -14,7 +14,7 @@ export async function authenticateSocket(
 	const sessionCookie: string | undefined = cookie["authjs.session-token"];
 
 	if (sessionCookie) {
-		const session = await db.session.findFirst({
+		const _session = await db.session.findFirst({
 			where: {
 				sessionToken: sessionCookie,
 			},

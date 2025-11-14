@@ -17,11 +17,11 @@ export const postRouter = createTRPCRouter({
 
 	create: protectedProcedure
 		.input(z.object({ name: z.string().min(1) }))
-		.mutation(async ({ ctx, input }) => {
+		.mutation(async () => {
 			return true;
 		}),
 
-	getLatest: protectedProcedure.query(async ({ ctx }) => {
+	getLatest: protectedProcedure.query(async () => {
 		return true;
 	}),
 

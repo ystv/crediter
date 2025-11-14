@@ -19,7 +19,6 @@ export function useCreateSocket(): TSocket {
 	const pathname = usePathname();
 	const router = useRouter();
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This needs to not reload as often as possible
 	useEffect(() => {
 		if (socket.connected) {
 			onConnect();
