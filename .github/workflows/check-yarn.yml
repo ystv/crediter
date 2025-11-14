@@ -17,5 +17,5 @@ jobs:
           node-version: 18.x
           cache: "yarn"
           cache-dependency-path: "yarn.lock"
-      - run: yarn install --forzen-lockfile --immutable --inline-builds
+      - run: yarn install --frozen-lockfile --immutable --inline-builds
       - run: yarn constraints
