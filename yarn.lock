@@ -80,7 +80,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:^2.2.5":
+"@biomejs/biome@npm:^2.2.5, @biomejs/biome@npm:^2.3.5":
   version: 2.3.5
   resolution: "@biomejs/biome@npm:2.3.5"
   dependencies:
@@ -4097,6 +4097,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ystv-crediter@workspace:."
   dependencies:
+    "@biomejs/biome": "npm:^2.3.5"
     "@prisma/client": "npm:6.18.0"
     "@types/bun": "npm:latest"
     "@vercel/ncc": "npm:^0.38.4"

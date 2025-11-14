@@ -1,23 +1,23 @@
 {
-  "name": "@repo/lib",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "postinstall": "prisma generate",
-    "build": "tsc && tsc-alias",
-    "db:generate": "dotenv -e ../../.env prisma generate",
-    "db:migrate": "dotenv -e ../../.env prisma migrate deploy",
-    "db:push": "dotenv -e ../../.env prisma db push"
-  },
-  "dependencies": {
-    "@prisma/client": "6.18.0",
-    "dotenv": "*",
-    "prisma": "6.18.0",
-    "zod": "^4.1.12"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "tsc-alias": "^1.8.16",
-    "typescript": "^5"
-  }
+	"name": "@repo/lib",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"postinstall": "prisma generate",
+		"build": "tsc && tsc-alias",
+		"db:generate": "dotenv -e ../../.env prisma generate",
+		"db:migrate": "dotenv -e ../../.env prisma migrate deploy",
+		"db:push": "dotenv -e ../../.env prisma db push"
+	},
+	"dependencies": {
+		"@prisma/client": "6.18.0",
+		"dotenv": "*",
+		"prisma": "6.18.0",
+		"zod": "^4.1.12"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"tsc-alias": "^1.8.16",
+		"typescript": "^5"
+	}
 }

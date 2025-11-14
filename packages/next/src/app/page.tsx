@@ -1,13 +1,13 @@
+import { Title } from "@mantine/core";
 import { auth } from "@/server/auth";
 import { api } from "@/trpc/server";
-import { Title } from "@mantine/core";
 
 export default async function Home() {
-  const session = await auth();
+	const session = await auth();
 
-  if (session?.user) {
-    void api.post.getLatest.prefetch();
-  }
+	if (session?.user) {
+		void api.post.getLatest.prefetch();
+	}
 
-  return <Title>YSTV Crediter</Title>;
+	return <Title>YSTV Crediter</Title>;
 }

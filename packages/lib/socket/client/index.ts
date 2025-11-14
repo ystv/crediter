@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { DefaultEventsMap } from "socket.io";
-import { type Socket, io } from "socket.io-client";
+import { io, type Socket } from "socket.io-client";
 
 export const socket = io();
 

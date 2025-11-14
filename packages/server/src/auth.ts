@@ -1,6 +1,5 @@
-import type { Socket } from "socket.io";
-import type { ExtendedError } from "socket.io";
 import { db } from "@repo/lib/db";
+import type { ExtendedError, Socket } from "socket.io";
 
 export async function authenticateSocket(
 	socket: Socket,

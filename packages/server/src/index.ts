@@ -1,10 +1,10 @@
-import next from "next";
-
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
+import next from "next";
 import { Server } from "socket.io";
-import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { authenticateSocket } from "./auth";
+import { checkDatabaseConnection, prepareHttpServer } from "./lib";
+
 // import { isMinioEnabled, getMinioClient } from "../lib/minio";
 // import { setupActionHandlers } from "../lib/slack/actions";
 // import {
