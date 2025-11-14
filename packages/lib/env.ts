@@ -18,7 +18,7 @@ const envSchema = z.object({
 
 export function validateEnv(): NodeJS.ProcessEnv | z.infer<typeof envSchema> {
 	if (process.env.SKIP_ENV_VALIDATION === "1") return process.env;
-	const envResult = envSchema.safeParse(env ?? process.env);
+	const envResult = envSchema.safeParse(process.env);
 	if (!envResult.success) {
 		console.error("Error: Bad env configuration");
 		for (const error of envResult.error.issues) {
