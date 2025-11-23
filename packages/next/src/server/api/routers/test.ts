@@ -1,6 +1,7 @@
 import { exec } from "node:child_process";
 import util from "node:util";
 import { getIO } from "@repo/lib/socket/server";
+import type { Server } from "socket.io";
 import {
 	createTRPCRouter,
 	protectedProcedure,
@@ -19,7 +20,7 @@ export const testRouter = createTRPCRouter({
 	on: protectedProcedure.mutation(async () => {
 		const io = getIO();
 
-		io.in("users").emit("test:on");
+		(globalThis as unknown as { io: Server }).io.in("users").emit("test:on");
 
 		return { ok: true };
 	}),
@@ -27,7 +28,7 @@ export const testRouter = createTRPCRouter({
 	off: protectedProcedure.mutation(async () => {
 		const io = getIO();
 
-		io.in("users").emit("test:off");
+		(globalThis as unknown as { io: Server }).io.in("users").emit("test:off");
 
 		return { ok: true };
 	}),

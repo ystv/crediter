@@ -1,4 +1,5 @@
 import { getIO } from "@repo/lib/socket/server";
+import type { Server } from "socket.io";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
@@ -30,7 +31,9 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${event.id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${event.id}`);
 		}),
 
 	delete: protectedProcedure
@@ -66,7 +69,9 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${deletedRole.event_id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${deletedRole.event_id}`);
 		}),
 
 	reorder: protectedProcedure
@@ -113,7 +118,9 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${role.event.id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${role.event.id}`);
 		}),
 
 	addName: protectedProcedure
@@ -143,6 +150,8 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${role.event_id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${role.event_id}`);
 		}),
 });

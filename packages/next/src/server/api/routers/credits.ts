@@ -10,6 +10,7 @@ import { getIO } from "@repo/lib/socket/server";
 import { imageSize } from "image-size";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
+import type { Server } from "socket.io";
 import z from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
@@ -35,7 +36,9 @@ export const creditsRouter = createTRPCRouter({
 				data: { event: { connect: { id: input.event_id } } },
 			});
 
-			io.in("users").emit(`update:event:${input.event_id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${input.event_id}`);
 
 			async function setCreditState({
 				progress,
@@ -62,7 +65,9 @@ export const creditsRouter = createTRPCRouter({
 					},
 				});
 
-				io.in("users").emit(`update:credits:${asset.id}`);
+				(globalThis as unknown as { io: Server }).io
+					.in("users")
+					.emit(`update:credits:${asset.id}`);
 			}
 
 			await setCreditState({

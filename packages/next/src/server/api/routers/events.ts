@@ -1,5 +1,6 @@
 import { getIO } from "@repo/lib/socket/server";
 import dayjs from "dayjs";
+import type { Server } from "socket.io";
 import { z } from "zod";
 import {
 	createTRPCRouter,
@@ -38,7 +39,9 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit("update:events");
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit("update:events");
 
 			return event;
 		}),
