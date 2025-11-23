@@ -13,6 +13,7 @@ COPY packages/lib/package.json    ./packages/lib/
 COPY packages/next/package.json   ./packages/next/
 COPY packages/server/package.json ./packages/server/
 COPY packages/lib/prisma.config.ts    ./packages/lib/
+COPY ./prisma.config.ts    .
 COPY prisma/schema.prisma ./prisma/schema.prisma
 COPY prisma/models ./prisma/models
 RUN --mount=type=cache,target=.yarn/cache \
@@ -49,6 +50,7 @@ COPY --from=build /app/assets /app/assets
 COPY --from=build /app/prisma/schema.prisma /app/prisma/schema.prisma
 COPY --from=build /app/prisma/models /app/prisma/models
 COPY --from=build /app/prisma/migrations /app/prisma/migrations
+COPY --from=install /app/prisma.config.ts /app
 
 WORKDIR /app
 ENV NODE_ENV=production
