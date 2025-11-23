@@ -36,7 +36,7 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit("update:events");
+			io().in("users").emit("update:events");
 
 			return event;
 		}),

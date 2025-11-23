@@ -17,19 +17,19 @@ export const testRouter = createTRPCRouter({
 	}),
 
 	on: protectedProcedure.mutation(async () => {
-		io.in("users").emit("test:on");
+		io().in("users").emit("test:on");
 
 		return { ok: true };
 	}),
 
 	off: protectedProcedure.mutation(async () => {
-		io.in("users").emit("test:off");
+		io().in("users").emit("test:off");
 
 		return { ok: true };
 	}),
 
 	// generateTestCredits: publicProcedure.mutation(async ({ ctx }) => {
-	// 	io.in("users").emit("credits:test:step", 0);
+	// 	io().in("users").emit("credits:test:step", 0);
 
 	// 	const browser = await puppeteer.launch({
 	// 		defaultViewport: {
@@ -55,7 +55,7 @@ export const testRouter = createTRPCRouter({
 	// 		timeout: 0,
 	// 	});
 
-	// 	io.in("users").emit("credits:test:step", 1);
+	// 	io().in("users").emit("credits:test:step", 1);
 
 	// 	const image = await page.screenshot({
 	// 		fullPage: true,
@@ -66,7 +66,7 @@ export const testRouter = createTRPCRouter({
 
 	// 	const dimensions = await imageSize(image);
 
-	// 	io.in("users").emit("credits:test:step", 2);
+	// 	io().in("users").emit("credits:test:step", 2);
 
 	// 	const PX_PER_FRAME = 6;
 
@@ -110,7 +110,7 @@ export const testRouter = createTRPCRouter({
 	// 		});
 	// 	});
 
-	// 	io.in("users").emit("credits:test:step", 3);
+	// 	io().in("users").emit("credits:test:step", 3);
 
 	// 	const concat_args = [
 	// 		"-i",
@@ -135,7 +135,7 @@ export const testRouter = createTRPCRouter({
 	// 		});
 	// 	});
 
-	// 	io.in("users").emit("credits:test:step", 4);
+	// 	io().in("users").emit("credits:test:step", 4);
 
 	// 	const asset = await ctx.db.credit.create({ data: {} });
 
@@ -168,11 +168,11 @@ export const testRouter = createTRPCRouter({
 	// 		},
 	// 	});
 
-	// 	io.in("users").emit("credits:test:step", 5);
+	// 	io().in("users").emit("credits:test:step", 5);
 
 	// 	await exec(`rm -r ${tmpdir}`);
 
-	// 	io.in("users").emit("credits:test:step", 6);
+	// 	io().in("users").emit("credits:test:step", 6);
 
 	// 	return NextResponse.json(
 	// 		{ ok: true },

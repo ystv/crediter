@@ -28,7 +28,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${event.id}`);
+			io().in("users").emit(`update:event:${event.id}`);
 		}),
 
 	delete: protectedProcedure
@@ -62,7 +62,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${deletedRole.event_id}`);
+			io().in("users").emit(`update:event:${deletedRole.event_id}`);
 		}),
 
 	reorder: protectedProcedure
@@ -107,7 +107,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${role.event.id}`);
+			io().in("users").emit(`update:event:${role.event.id}`);
 		}),
 
 	addName: protectedProcedure
@@ -135,6 +135,6 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit(`update:event:${role.event_id}`);
+			io().in("users").emit(`update:event:${role.event_id}`);
 		}),
 });
