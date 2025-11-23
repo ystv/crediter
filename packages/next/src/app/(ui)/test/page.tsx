@@ -32,7 +32,7 @@ export default function TestPage() {
 	return (
 		<Stack>
 			<Button.Group>
-				<Button
+				{/* <Button
 					onClick={async () => {
 						const res = await generateCredits();
 						console.log(res.ok);
@@ -43,7 +43,7 @@ export default function TestPage() {
 					variant="default"
 				>
 					Generate Credits
-				</Button>
+				</Button> */}
 				<Button.GroupSection>{activeStep}</Button.GroupSection>
 			</Button.Group>
 			<Timeline active={activeStep}>
