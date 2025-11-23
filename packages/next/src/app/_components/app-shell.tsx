@@ -11,12 +11,12 @@ import {
 } from "@mantine/core";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
+import { useWebsocket } from "@repo/lib/socket/client";
 import { QueryClientProvider, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import type { ReactNode } from "react";
-import { useWebsocket } from "../../../../lib/socket/client";
 
 export function AppLayout(props: { children: ReactNode }) {
 	const pathname = usePathname();

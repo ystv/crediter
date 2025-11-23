@@ -4,8 +4,8 @@ import {
 } from "node:http";
 import { exit } from "node:process";
 import { db } from "@repo/lib/db";
+import { sql } from "@repo/lib/db/generated/prisma/internal/prismaNamespace";
 import type { RequestHandler } from "next/dist/server/next";
-import { sql } from "../../lib/db/generated/prisma/internal/prismaNamespace";
 
 export async function checkDatabaseConnection() {
 	let connectionAttempts = 1;

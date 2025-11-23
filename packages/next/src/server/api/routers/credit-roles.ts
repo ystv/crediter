@@ -1,6 +1,6 @@
+import { io } from "@repo/lib/socket/server";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
-import { io } from "../../../../../lib/socket/server";
 
 export const creditRolesRouter = createTRPCRouter({
 	create: protectedProcedure

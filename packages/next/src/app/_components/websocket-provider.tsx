@@ -1,10 +1,7 @@
 "use client";
 
+import { useCreateSocket, WebsocketContext } from "@repo/lib/socket/client";
 import type { ReactNode } from "react";
-import {
-	useCreateSocket,
-	WebsocketContext,
-} from "../../../../lib/socket/client";
 
 export function WebsocketProvider({ children }: { children: ReactNode }) {
 	return (

@@ -1,8 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { db } from "@repo/lib/db";
+import { env } from "@repo/lib/env";
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
-import { db } from "../../../../lib/db";
-import { env } from "../../../../lib/env";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`

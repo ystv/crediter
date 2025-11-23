@@ -7,11 +7,11 @@
  * need to use are documented accordingly near the end.
  */
 
+import { db } from "@repo/lib/db";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { auth } from "@/server/auth";
-import { db } from "../../../../lib/db";
 
 /**
  * 1. CONTEXT

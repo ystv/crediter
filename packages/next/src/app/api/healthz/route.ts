@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
+import { db } from "@repo/lib/db";
+import { sql } from "@repo/lib/db/generated/prisma/internal/prismaNamespace";
 import { NextResponse } from "next/server";
-import { db } from "../../../../../lib/db";
-import { sql } from "../../../../../lib/db/generated/prisma/internal/prismaNamespace";
 
 export const dynamic = "force-dynamic";
 

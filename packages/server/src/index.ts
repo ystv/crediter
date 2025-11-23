@@ -7,13 +7,6 @@ import { authenticateSocket } from "./auth";
 import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { runStartupTasks } from "./startup";
 
-// import { isMinioEnabled, getMinioClient } from "../lib/minio";
-// import { setupActionHandlers } from "../lib/slack/actions";
-// import {
-//   createSlackApp,
-//   isSlackEnabled,
-// } from "../lib/slack/slackApiConnection";
-
 const dev = env.NODE_ENV !== "production";
 const hostname = "localhost";
 const port = 3000;

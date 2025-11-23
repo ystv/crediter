@@ -2,6 +2,7 @@ import { exec, spawn } from "node:child_process";
 import util from "node:util";
 import { env } from "@repo/lib/env";
 import { getMinioClient } from "@repo/lib/minio";
+import { io } from "@repo/lib/socket/server";
 import { imageSize } from "image-size";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
@@ -10,7 +11,6 @@ import {
 	protectedProcedure,
 	publicProcedure,
 } from "@/server/api/trpc";
-import { io } from "../../../../../lib/socket/server";
 
 const execAsync = util.promisify(exec);
 
