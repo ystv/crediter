@@ -1,5 +1,9 @@
-import { postRouter } from "@/server/api/routers/post";
+import { testRouter } from "@/server/api/routers/test";
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
+import { creditRoleNamesRouter } from "./routers/credit-role-names";
+import { creditRolesRouter } from "./routers/credit-roles";
+import { creditsRouter } from "./routers/credits";
+import { eventsRouter } from "./routers/events";
 
 /**
  * This is the primary router for your server.
@@ -7,7 +11,11 @@ import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-	post: postRouter,
+	credits: creditsRouter,
+	creditRoles: creditRolesRouter,
+	creditRoleNames: creditRoleNamesRouter,
+	events: eventsRouter,
+	test: testRouter,
 });
 
 // export type definition of API

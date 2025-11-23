@@ -12,7 +12,7 @@
 	"scripts": {
 		"dev": "nodemon",
 		"db:generate": "yarn workspace @repo/lib run db:generate",
-		"db:migrate": "yarn workspace @repo/lib run db:migrate",
+		"db:migrate": "yarn workspace @repo/lib run db:migrate:dev",
 		"db:push": "yarn workspace @repo/lib run db:push",
 		"db:studio": "prisma studio",
 		"build:all": "yarn build:lib && yarn build:next && yarn build:server",

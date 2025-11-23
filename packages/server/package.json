@@ -11,6 +11,7 @@
 		"@repo/lib": "workspace:*",
 		"@repo/next": "workspace:*",
 		"dotenv": "*",
+		"minio": "^8.0.6",
 		"next": "^15.2.3",
 		"socket.io": "^4.8.1"
 	},
@@ -21,8 +22,5 @@
 	},
 	"peerDependencies": {
 		"typescript": "^5"
-	},
-	"exports": [
-		"./src"
-	]
+	}
 }

@@ -57,3 +57,6 @@ export function useCreateSocket(): TSocket {
 
 	return { socket, isConnected, transport };
 }
+
+export * from "./context";
+export * from "./wrapper";

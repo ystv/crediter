@@ -6,12 +6,14 @@
 		"postinstall": "prisma generate",
 		"build": "tsc && tsc-alias",
 		"db:generate": "dotenv -e ../../.env prisma generate",
-		"db:migrate": "dotenv -e ../../.env prisma migrate deploy",
+		"db:migrate:dev": "dotenv -e ../../.env prisma migrate dev",
+		"db:migrate:prod": "dotenv -e ../../.env prisma migrate deploy",
 		"db:push": "dotenv -e ../../.env prisma db push"
 	},
 	"dependencies": {
 		"@prisma/client": "6.18.0",
-		"dotenv": "*",
+		"dotenv-cli": "^11.0.0",
+		"minio": "^8.0.6",
 		"prisma": "6.18.0",
 		"zod": "^4.1.12"
 	},

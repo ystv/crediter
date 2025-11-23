@@ -55,6 +55,8 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
+    created_events Event[]
+
     @@map("users")
 }
 

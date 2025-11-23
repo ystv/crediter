@@ -14,7 +14,7 @@ export async function authenticateSocket(
 	const sessionCookie: string | undefined = cookie["authjs.session-token"];
 
 	if (sessionCookie) {
-		const _session = await db.session.findFirst({
+		const session = await db.session.findFirst({
 			where: {
 				sessionToken: sessionCookie,
 			},
@@ -22,7 +22,13 @@ export async function authenticateSocket(
 				user: true,
 			},
 		});
-	} else {
+
+		if (session === null) return next();
+
+		socket.join(`user:${session.user.id}`);
+		socket.join("users");
+
+		socket.data.session = session;
 	}
 
 	return next();

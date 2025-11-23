@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1
 
 FROM node:20-alpine AS base
-# RUN apk update  && apk add ca-certificates git openssl
+RUN apk update && apk add ffmpeg=6.1.2-r2 chromium=142.0.7444.59-r0
 
 FROM base AS install
 RUN apk update && apk add alpine-sdk python3
@@ -14,13 +14,9 @@ COPY packages/next/package.json   ./packages/next/
 COPY packages/server/package.json ./packages/server/
 COPY packages/lib/prisma.config.ts    ./packages/lib/
 COPY prisma/schema.prisma ./prisma/schema.prisma
+COPY prisma/models ./prisma/models
 RUN --mount=type=cache,target=.yarn/cache \
-  yarn install --frozen-lockfile
-
-# COPY . .
-
-# RUN --mount=type=cache,target=/root/.bun/install/cache \
-#   bun install --frozen-lockfile
+  yarn install --immutable
 
 FROM install AS build
 # TODO: Split this up to build some packages in parallel
@@ -38,7 +34,6 @@ FROM install AS server_packages
 
 WORKDIR /app/packages/server
 RUN yarn workspaces focus @repo/server --production
-# || cat /tmp/xfs-*/build.log && exit 1
 
 FROM base
 COPY --from=build /app/packages/server/build /app/packages/server/build
@@ -48,12 +43,15 @@ COPY --from=build /app/packages/lib/build /app/packages/lib/
 COPY --from=build /app/packages/next/.next /app/packages/next/.next
 COPY --from=build /app/packages/next/public /app/packages/next/public
 COPY --from=build /app/packages/next/next.config.js /app/packages/next/next.config.js
+COPY --from=build /app/assets /app/assets
 
 # Copy these in so that we can still run Prisma migrations in prod
 COPY --from=build /app/prisma/schema.prisma /app/prisma/schema.prisma
+COPY --from=build /app/prisma/models /app/prisma/models
 COPY --from=build /app/prisma/migrations /app/prisma/migrations
-# And so we can run the scripts
+
 WORKDIR /app
 ENV NODE_ENV=production
+ENV PUPPETEER_CHROME_PATH=/usr/bin/chromium
 ENV HOSTNAME="0.0.0.0"
 ENTRYPOINT ["node", "packages/server/build/index.js"]

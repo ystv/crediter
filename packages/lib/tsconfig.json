@@ -16,7 +16,7 @@
 		"rootDir": ".",
 		"rewriteRelativeImportExtensions": true
 	},
-	"include": ["db/**/*.ts", "env.ts", "prisma.config.ts"],
+	"include": ["./**/*.ts", "env.ts", "prisma.config.ts"],
 	"tsc-alias": {
 		"resolveFullPaths": true
 	}

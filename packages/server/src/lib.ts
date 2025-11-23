@@ -4,19 +4,22 @@ import {
 } from "node:http";
 import { exit } from "node:process";
 import { db } from "@repo/lib/db";
-import { sql } from "@repo/lib/db/generated/prisma/internal/prismaNamespace";
 import type { RequestHandler } from "next/dist/server/next";
+import { sql } from "../../lib/db/generated/prisma/internal/prismaNamespace";
 
 export async function checkDatabaseConnection() {
 	let connectionAttempts = 1;
 
+	console.log("┌ Checking database connection");
+
 	while (connectionAttempts <= 3) {
 		try {
 			await db.$executeRaw(sql`SELECT 1;`);
+			console.log("└ Connection to database sucessful");
 			return;
 		} catch (_e) {
-			console.error(
-				`Database connection attempt ${connectionAttempts} failed, retrying...`,
+			console.log(
+				`│ Database connection attempt ${connectionAttempts} failed, retrying...`,
 			);
 			await sleep(5000);
 		}
@@ -24,7 +27,7 @@ export async function checkDatabaseConnection() {
 	}
 	if (connectionAttempts > 3) {
 		console.error(
-			"Connection to database failed, exiting. Please check your configuration.",
+			"└ Connection to database failed, exiting. Please check your configuration.",
 		);
 		exit(1);
 	}

@@ -1,9 +1,11 @@
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
+import { checkMinioConnection } from "@repo/lib/minio";
 import next from "next";
 import { Server } from "socket.io";
 import { authenticateSocket } from "./auth";
 import { checkDatabaseConnection, prepareHttpServer } from "./lib";
+import { runStartupTasks } from "./startup";
 
 // import { isMinioEnabled, getMinioClient } from "../lib/minio";
 // import { setupActionHandlers } from "../lib/slack/actions";
@@ -26,7 +28,7 @@ validateEnv();
 app.prepare().then(async () => {
 	const httpServer = await prepareHttpServer(handler);
 
-	await checkDatabaseConnection();
+	await runStartupTasks();
 
 	io = new Server(httpServer);
 	(globalThis as unknown as { io: Server }).io = io;

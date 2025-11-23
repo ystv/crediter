@@ -16,7 +16,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import type { ReactNode } from "react";
-import { useWebsocket } from "./websocket-provider";
+import { useWebsocket } from "../../../../lib/socket/client";
 
 export function AppLayout(props: { children: ReactNode }) {
 	const pathname = usePathname();
@@ -108,6 +108,12 @@ export function AppLayout(props: { children: ReactNode }) {
 						component={Link}
 						href={"/"}
 						label={"Home"}
+					/>
+					<NavLink
+						active={pathname === "/events"}
+						component={Link}
+						href={"/events"}
+						label={"Events"}
 					/>
 				</AppShell.Navbar>
 				<AppShell.Main>{props.children}</AppShell.Main>
