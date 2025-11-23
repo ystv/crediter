@@ -1,4 +1,4 @@
-import { io } from "@repo/lib/socket/server";
+import { getIO } from "@repo/lib/socket/server";
 import dayjs from "dayjs";
 import { z } from "zod";
 import {
@@ -28,6 +28,8 @@ export const eventsRouter = createTRPCRouter({
 	create: protectedProcedure
 		.input(z.object({ name: z.string(), date: z.coerce.date() }))
 		.mutation(async ({ ctx, input }) => {
+			const io = getIO();
+
 			const event = await ctx.db.event.create({
 				data: {
 					name: input.name,
@@ -36,7 +38,7 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			io().in("users").emit("update:events");
+			io.in("users").emit("update:events");
 
 			return event;
 		}),

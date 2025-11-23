@@ -6,7 +6,7 @@ import {
 } from "@repo/lib/db/generated/prisma/enums";
 import { env } from "@repo/lib/env";
 import { getMinioClient } from "@repo/lib/minio";
-import { io } from "@repo/lib/socket/server";
+import { getIO } from "@repo/lib/socket/server";
 import { imageSize } from "image-size";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
@@ -29,11 +29,13 @@ export const creditsRouter = createTRPCRouter({
 	generateCredits: protectedProcedure
 		.input(z.object({ event_id: z.cuid() }))
 		.mutation(async ({ ctx, input }) => {
+			const io = getIO();
+
 			const asset = await ctx.db.credit.create({
 				data: { event: { connect: { id: input.event_id } } },
 			});
 
-			io().in("users").emit(`update:event:${input.event_id}`);
+			io.in("users").emit(`update:event:${input.event_id}`);
 
 			async function setCreditState({
 				progress,
@@ -60,7 +62,7 @@ export const creditsRouter = createTRPCRouter({
 					},
 				});
 
-				io().in("users").emit(`update:credits:${asset.id}`);
+				io.in("users").emit(`update:credits:${asset.id}`);
 			}
 
 			await setCreditState({
