@@ -83,7 +83,7 @@ function CreateEventForm(props: { onSuccess: () => void }) {
 			date: dayjs().format("YYYY-MM-DD"),
 		},
 		onSubmit: async ({ value }) => {
-			const res = await createEvent(value);
+			const _res = await createEvent(value);
 
 			props.onSuccess();
 		},

@@ -1,18 +1,13 @@
-import { exec, spawn } from "node:child_process";
+import { exec } from "node:child_process";
 import util from "node:util";
-import { env } from "@repo/lib/env";
-import { getMinioClient } from "@repo/lib/minio";
 import { io } from "@repo/lib/socket/server";
-import { imageSize } from "image-size";
-import { NextResponse } from "next/server";
-import puppeteer from "puppeteer";
 import {
 	createTRPCRouter,
 	protectedProcedure,
 	publicProcedure,
 } from "@/server/api/trpc";
 
-const execAsync = util.promisify(exec);
+const _execAsync = util.promisify(exec);
 
 export const testRouter = createTRPCRouter({
 	ping: publicProcedure.query(() => {

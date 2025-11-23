@@ -9,12 +9,6 @@ const credits = [
 	},
 ];
 
-enum heights {
-	RoleName = 105,
-	PersonName = 75,
-	Gap = 50,
-}
-
 const SCREEN_HEIGHT = 1080;
 
 function RoleName(props: { roleName: string }) {

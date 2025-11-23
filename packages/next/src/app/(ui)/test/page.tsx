@@ -1,7 +1,6 @@
 "use client";
 
 import { Button, Loader, Stack, Timeline } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
 import { useSocketTriggeredFunction } from "@repo/lib/socket/client";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";

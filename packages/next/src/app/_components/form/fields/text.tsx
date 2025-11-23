@@ -1,6 +1,4 @@
 import { TextInput } from "@mantine/core";
-import { useStore } from "@tanstack/react-form";
-import type { ZodError } from "zod";
 import { useFieldContext } from "../context";
 
 export function TextField({ label }: { label: string }) {

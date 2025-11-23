@@ -1,10 +1,9 @@
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
-import { checkMinioConnection } from "@repo/lib/minio";
 import next from "next";
 import { Server } from "socket.io";
 import { authenticateSocket } from "./auth";
-import { checkDatabaseConnection, prepareHttpServer } from "./lib";
+import { prepareHttpServer } from "./lib";
 import { runStartupTasks } from "./startup";
 
 const dev = env.NODE_ENV !== "production";
