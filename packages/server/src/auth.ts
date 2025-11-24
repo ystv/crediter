@@ -11,7 +11,9 @@ export async function authenticateSocket(
 
 	const cookie = parseCookie(socket.client.request.headers.cookie);
 
-	const sessionCookie: string | undefined = cookie["authjs.session-token"];
+	let sessionCookie: string | undefined;
+	sessionCookie = cookie["authjs.session-token"];
+	if (!sessionCookie) sessionCookie = cookie["__Secure-authjs.session-token"];
 
 	if (sessionCookie) {
 		const session = await db.session.findFirst({
