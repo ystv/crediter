@@ -10,7 +10,6 @@ import { getIO } from "@repo/lib/socket/server";
 import { imageSize } from "image-size";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
-import type { Server } from "socket.io";
 import z from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 

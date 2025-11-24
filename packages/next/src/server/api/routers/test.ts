@@ -1,7 +1,6 @@
 import { exec } from "node:child_process";
 import util from "node:util";
 import { getIO } from "@repo/lib/socket/server";
-import type { Server } from "socket.io";
 import {
 	createTRPCRouter,
 	protectedProcedure,

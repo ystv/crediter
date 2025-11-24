@@ -1,5 +1,4 @@
 import { getIO } from "@repo/lib/socket/server";
-import type { Server } from "socket.io";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 

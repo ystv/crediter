@@ -1,8 +1,5 @@
 import { getIO } from "@repo/lib/socket/server";
-import { Emitter } from "@socket.io/redis-emitter";
 import dayjs from "dayjs";
-import { createClient } from "redis";
-import type { Server } from "socket.io";
 import { z } from "zod";
 import {
 	createTRPCRouter,
@@ -31,7 +28,7 @@ export const eventsRouter = createTRPCRouter({
 	create: protectedProcedure
 		.input(z.object({ name: z.string(), date: z.coerce.date() }))
 		.mutation(async ({ ctx, input }) => {
-			// const io = await getIO()
+			const io = await getIO();
 
 			const event = await ctx.db.event.create({
 				data: {
@@ -41,11 +38,7 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			const redis = createClient();
-			await redis.connect();
-			const emitter = new Emitter(redis);
-
-			emitter.in("users").emit("update:events");
+			io.in("users").emit("update:events");
 
 			return event;
 		}),
