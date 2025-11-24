@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1
 
 FROM node:20-alpine AS base
-RUN apk update && apk add ffmpeg=6.1.2-r2 chromium=142.0.7444.59-r0
+RUN apk update && apk add ffmpeg=6.1.2-r2 chromium=142.0.7444.59-r0 redis=8.0.4-r0 
 
 FROM base AS install
 RUN apk update && apk add alpine-sdk python3
@@ -56,4 +56,4 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PUPPETEER_CHROME_PATH=/usr/bin/chromium
 ENV HOSTNAME="0.0.0.0"
-ENTRYPOINT ["node", "packages/server/build/index.js"]
+CMD redis-server --daemonize yes && node packages/server/build/index.js

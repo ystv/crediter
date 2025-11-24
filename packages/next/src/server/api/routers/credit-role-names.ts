@@ -12,7 +12,7 @@ export const creditRoleNamesRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const roleName = await ctx.db.creditRoleName.findFirstOrThrow({
 				where: { id: input.credit_role_name_id },
@@ -60,9 +60,7 @@ export const creditRoleNamesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${roleName.credit_role.event.id}`);
+			io.in("users").emit(`update:event:${roleName.credit_role.event.id}`);
 		}),
 
 	delete: protectedProcedure
@@ -72,7 +70,7 @@ export const creditRoleNamesRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const deletedRoleName = await ctx.db.creditRoleName.delete({
 				where: {
@@ -103,8 +101,8 @@ export const creditRoleNamesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${deletedRoleName.credit_role.event_id}`);
+			io.in("users").emit(
+				`update:event:${deletedRoleName.credit_role.event_id}`,
+			);
 		}),
 });

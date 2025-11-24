@@ -30,15 +30,13 @@ export const creditsRouter = createTRPCRouter({
 	generateCredits: protectedProcedure
 		.input(z.object({ event_id: z.cuid() }))
 		.mutation(async ({ ctx, input }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const asset = await ctx.db.credit.create({
 				data: { event: { connect: { id: input.event_id } } },
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${input.event_id}`);
+			io.in("users").emit(`update:event:${input.event_id}`);
 
 			async function setCreditState({
 				progress,
@@ -65,9 +63,7 @@ export const creditsRouter = createTRPCRouter({
 					},
 				});
 
-				(globalThis as unknown as { io: Server }).io
-					.in("users")
-					.emit(`update:credits:${asset.id}`);
+				io.in("users").emit(`update:credits:${asset.id}`);
 			}
 
 			await setCreditState({

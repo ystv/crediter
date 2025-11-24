@@ -10,9 +10,11 @@
 		"@prisma/client": "6.18.0",
 		"@repo/lib": "workspace:*",
 		"@repo/next": "workspace:*",
+		"@socket.io/redis-adapter": "^8.3.0",
 		"dotenv": "*",
 		"minio": "^8.0.6",
 		"next": "^15.2.3",
+		"redis": "^5.10.0",
 		"socket.io": "^4.8.1"
 	},
 	"devDependencies": {

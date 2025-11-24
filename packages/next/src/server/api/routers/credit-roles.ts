@@ -12,7 +12,7 @@ export const creditRolesRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ input, ctx }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const event = await ctx.db.event.findFirstOrThrow({
 				where: {
@@ -31,9 +31,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${event.id}`);
+			io.in("users").emit(`update:event:${event.id}`);
 		}),
 
 	delete: protectedProcedure
@@ -43,7 +41,7 @@ export const creditRolesRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const deletedRole = await ctx.db.creditRole.delete({
 				where: {
@@ -69,9 +67,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${deletedRole.event_id}`);
+			io.in("users").emit(`update:event:${deletedRole.event_id}`);
 		}),
 
 	reorder: protectedProcedure
@@ -79,7 +75,7 @@ export const creditRolesRouter = createTRPCRouter({
 			z.object({ credit_role_id: z.cuid(), direction: z.enum(["up", "down"]) }),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const role = await ctx.db.creditRole.findFirstOrThrow({
 				where: { id: input.credit_role_id },
@@ -118,9 +114,7 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${role.event.id}`);
+			io.in("users").emit(`update:event:${role.event.id}`);
 		}),
 
 	addName: protectedProcedure
@@ -131,7 +125,7 @@ export const creditRolesRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ input, ctx }) => {
-			const io = getIO();
+			const io = await getIO();
 
 			const role = await ctx.db.creditRole.findFirstOrThrow({
 				where: {
@@ -150,8 +144,6 @@ export const creditRolesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${role.event_id}`);
+			io.in("users").emit(`update:event:${role.event_id}`);
 		}),
 });

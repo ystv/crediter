@@ -1,6 +1,8 @@
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
+import { createAdapter } from "@socket.io/redis-adapter";
 import next from "next";
+import { createClient } from "redis";
 import { Server } from "socket.io";
 import { authenticateSocket } from "./auth";
 import { prepareHttpServer } from "./lib";
@@ -23,7 +25,14 @@ app.prepare().then(async () => {
 	await runStartupTasks();
 
 	io = new Server(httpServer);
-	(globalThis as unknown as { io: Server }).io = io;
+	// io = io;
+
+	const pubClient = createClient();
+	const subClient = pubClient.duplicate();
+
+	await Promise.all([pubClient.connect(), subClient.connect()]);
+
+	io.adapter(createAdapter(pubClient, subClient));
 
 	io.use(authenticateSocket);
 
