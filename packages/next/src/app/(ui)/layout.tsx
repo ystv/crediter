@@ -9,12 +9,14 @@ import {
 } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import { env } from "@repo/lib/env";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { AppLayout } from "@/app/_components/app-shell";
 import { WebsocketProvider } from "@/app/_components/websocket-provider";
 import { auth, signIn } from "@/server/auth";
 import { TRPCReactProvider } from "@/trpc/react";
+import { MinioConfigProvider } from "../_components/minio-provider";
 
 export const metadata: Metadata = {
 	title: "YSTV Crediter",
@@ -37,18 +39,26 @@ export default async function RootLayout({
 				<ColorSchemeScript defaultColorScheme="auto" />
 			</head>
 			<body>
-				<SessionProvider>
-					<WebsocketProvider>
-						<TRPCReactProvider>
-							<MantineProvider defaultColorScheme="auto">
-								<ModalsProvider>
-									<AppLayout>{children}</AppLayout>
-									<Notifications />
-								</ModalsProvider>
-							</MantineProvider>
-						</TRPCReactProvider>
-					</WebsocketProvider>
-				</SessionProvider>
+				<MinioConfigProvider
+					config={{
+						MINIO_BUCKET: env.MINIO_BUCKET,
+						MINIO_ENDPOINT: env.MINIO_ENDPOINT,
+						MINIO_USE_SSL: env.MINIO_USE_SSL,
+					}}
+				>
+					<SessionProvider>
+						<WebsocketProvider>
+							<TRPCReactProvider>
+								<MantineProvider defaultColorScheme="auto">
+									<ModalsProvider>
+										<AppLayout>{children}</AppLayout>
+										<Notifications />
+									</ModalsProvider>
+								</MantineProvider>
+							</TRPCReactProvider>
+						</WebsocketProvider>
+					</SessionProvider>
+				</MinioConfigProvider>
 			</body>
 		</html>
 	);

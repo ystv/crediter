@@ -16,6 +16,7 @@ import { useSocketTriggeredFunction } from "@repo/lib/socket/client";
 import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
 import { api } from "@/trpc/react";
+import { useMinioConfig } from "./minio-provider";
 
 export function CreditProgressCard(props: { credit_id: string }) {
 	const creditQuery = api.credits.read.useQuery({ credit_id: props.credit_id });
@@ -23,6 +24,8 @@ export function CreditProgressCard(props: { credit_id: string }) {
 	useSocketTriggeredFunction(`update:credits:${props.credit_id}`, () =>
 		creditQuery.refetch(),
 	);
+
+	const minioConfig = useMinioConfig();
 
 	if (!creditQuery.data)
 		return (
@@ -59,7 +62,7 @@ export function CreditProgressCard(props: { credit_id: string }) {
 					{asset.state === CreditState.READY && (
 						<Button
 							component={Link}
-							href={`https://cdn.ystv.co.uk/crediter-testing/${asset.path}`}
+							href={`${minioConfig.URL}/${asset.path}`}
 							ml={"auto"}
 							variant="default"
 						>
