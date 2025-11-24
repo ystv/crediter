@@ -36,7 +36,9 @@ export const creditsRouter = createTRPCRouter({
 				data: { event: { connect: { id: input.event_id } } },
 			});
 
-			io.in("users").emit(`update:event:${input.event_id}`);
+			(globalThis as unknown as { io: Server }).io
+				.in("users")
+				.emit(`update:event:${input.event_id}`);
 
 			async function setCreditState({
 				progress,
@@ -63,7 +65,9 @@ export const creditsRouter = createTRPCRouter({
 					},
 				});
 
-				io.in("users").emit(`update:credits:${asset.id}`);
+				(globalThis as unknown as { io: Server }).io
+					.in("users")
+					.emit(`update:credits:${asset.id}`);
 			}
 
 			await setCreditState({

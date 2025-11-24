@@ -1,6 +1,5 @@
 // import { checkDatabaseConnection, prepareHttpServer } from "./lib";
 import { env, validateEnv } from "@repo/lib/env";
-import { setIO } from "@repo/lib/socket/server";
 import next from "next";
 import { Server } from "socket.io";
 import { authenticateSocket } from "./auth";
@@ -24,7 +23,7 @@ app.prepare().then(async () => {
 	await runStartupTasks();
 
 	io = new Server(httpServer);
-	setIO(io);
+	(globalThis as unknown as { io: Server }).io = io;
 
 	io.use(authenticateSocket);
 
