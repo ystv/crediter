@@ -31,7 +31,7 @@ export const eventsRouter = createTRPCRouter({
 	create: protectedProcedure
 		.input(z.object({ name: z.string(), date: z.coerce.date() }))
 		.mutation(async ({ ctx, input }) => {
-			const io = await getIO();
+			// const io = await getIO()
 
 			const event = await ctx.db.event.create({
 				data: {
@@ -41,7 +41,11 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			io.in("users").emit("update:events");
+			const redis = createClient();
+			await redis.connect();
+			const emitter = new Emitter(redis);
+
+			emitter.in("users").emit("update:events");
 
 			return event;
 		}),
