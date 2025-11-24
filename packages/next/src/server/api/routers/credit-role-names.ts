@@ -60,9 +60,7 @@ export const creditRoleNamesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${roleName.credit_role.event.id}`);
+			io.in("users").emit(`update:event:${roleName.credit_role.event.id}`);
 		}),
 
 	delete: protectedProcedure
@@ -103,8 +101,8 @@ export const creditRoleNamesRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit(`update:event:${deletedRoleName.credit_role.event_id}`);
+			io.in("users").emit(
+				`update:event:${deletedRoleName.credit_role.event_id}`,
+			);
 		}),
 });

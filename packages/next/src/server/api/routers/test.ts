@@ -20,7 +20,7 @@ export const testRouter = createTRPCRouter({
 	on: protectedProcedure.mutation(async () => {
 		const io = getIO();
 
-		(globalThis as unknown as { io: Server }).io.in("users").emit("test:on");
+		io.in("users").emit("test:on");
 
 		return { ok: true };
 	}),
@@ -28,7 +28,7 @@ export const testRouter = createTRPCRouter({
 	off: protectedProcedure.mutation(async () => {
 		const io = getIO();
 
-		(globalThis as unknown as { io: Server }).io.in("users").emit("test:off");
+		io.in("users").emit("test:off");
 
 		return { ok: true };
 	}),

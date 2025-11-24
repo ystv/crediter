@@ -39,9 +39,7 @@ export const eventsRouter = createTRPCRouter({
 				},
 			});
 
-			(globalThis as unknown as { io: Server }).io
-				.in("users")
-				.emit("update:events");
+			io.in("users").emit("update:events");
 
 			return event;
 		}),
