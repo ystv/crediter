@@ -49,8 +49,6 @@ export const creditsRouter = createTRPCRouter({
 				size?: number;
 				path?: string;
 			}) {
-				console.log(progress);
-
 				await ctx.db.credit.update({
 					where: {
 						id: asset.id,
