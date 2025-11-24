@@ -56,4 +56,11 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PUPPETEER_CHROME_PATH=/usr/bin/chromium
 ENV HOSTNAME="0.0.0.0"
-CMD redis-server --daemonize yes && node packages/server/build/index.js
+
+COPY --chmod=755 <<EOT /app/entrypoint.sh
+#!/bin/sh
+set -e
+redis-server --daemonize yes && node packages/server/build/index.js
+EOT
+
+CMD ["./entrypoint.sh"]
