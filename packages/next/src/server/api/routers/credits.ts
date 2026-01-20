@@ -162,7 +162,7 @@ export const creditsRouter = createTRPCRouter({
 				"-i",
 				tmpdir_path("credits_scroll.mp4"),
 				"-i",
-				"assets/endcard_50p_fade_out.mp4",
+				"assets/2026_endcard_50p.mp4",
 				"-filter_complex",
 				"[0:v]fps=50[v0];[1:v]fps=50[v1];[v0][v1]concat=n=2:v=1[outv]",
 				"-map",
