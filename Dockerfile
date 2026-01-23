@@ -16,6 +16,7 @@ COPY packages/lib/prisma.config.ts    ./packages/lib/
 COPY ./prisma.config.ts    .
 COPY prisma/schema.prisma ./prisma/schema.prisma
 COPY prisma/models ./prisma/models
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 RUN --mount=type=cache,target=.yarn/cache \
   yarn install --immutable
 
