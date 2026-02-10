@@ -5,7 +5,7 @@ module.exports = defineConfig({
 	async constraints({ Yarn }) {
 		const packageVersions = {
 			"@prisma/client": "6.18.0",
-			next: "^15.2.3",
+			next: "15.2.8",
 			minio: "^8.0.6",
 			prisma: "6.18.0",
 			"socket.io": "^4.8.1",
