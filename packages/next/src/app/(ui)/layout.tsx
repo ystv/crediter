@@ -44,6 +44,7 @@ export default async function RootLayout({
 						MINIO_BUCKET: env.MINIO_BUCKET,
 						MINIO_ENDPOINT: env.MINIO_ENDPOINT,
 						MINIO_USE_SSL: env.MINIO_USE_SSL,
+						MINIO_ANON_URL_BASE: env.MINIO_ANON_URL_BASE
 					}}
 				>
 					<SessionProvider>

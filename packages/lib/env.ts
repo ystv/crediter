@@ -22,6 +22,13 @@ const envSchema = z.object({
 	MINIO_BUCKET: z.string(),
 	MINIO_ACCESS_KEY: z.string(),
 	MINIO_SECRET_KEY: z.string(),
+	MINIO_ANON_URL_BASE: z
+    .string()
+    .refine(
+      (v) => !v.endsWith("/"),
+      "MINIO_ANON_URL_BASE should not end with a '/'",
+    )
+    .optional(),
 });
 
 export function validateEnv(): z.infer<typeof envSchema> {
