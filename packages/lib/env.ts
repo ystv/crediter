@@ -22,6 +22,7 @@ const envSchema = z.object({
   MINIO_BUCKET: z.string(),
   MINIO_ACCESS_KEY: z.string(),
   MINIO_SECRET_KEY: z.string(),
+  MINIO_REGION: z.string().optional(),
   MINIO_ANON_URL_BASE: z
     .string()
     .refine(
