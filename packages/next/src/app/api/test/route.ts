@@ -1,3 +1,3 @@
 export async function GET() {
-	// return await api.test.generateTestCredits();
+  // return await api.test.generateTestCredits();
 }

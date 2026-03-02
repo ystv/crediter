@@ -4,15 +4,15 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { WebsocketProvider } from "../_components/websocket-provider";
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{ children: React.ReactNode }>) {
-	return (
-		<html lang="en">
-			<body>
-				<WebsocketProvider>
-					<TRPCReactProvider>{children}</TRPCReactProvider>
-				</WebsocketProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body>
+        <WebsocketProvider>
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </WebsocketProvider>
+      </body>
+    </html>
+  );
 }

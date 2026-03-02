@@ -11,11 +11,11 @@ import { eventsRouter } from "./routers/events";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-	credits: creditsRouter,
-	creditRoles: creditRolesRouter,
-	creditRoleNames: creditRoleNamesRouter,
-	events: eventsRouter,
-	test: testRouter,
+  credits: creditsRouter,
+  creditRoles: creditRolesRouter,
+  creditRoleNames: creditRoleNamesRouter,
+  events: eventsRouter,
+  test: testRouter,
 });
 
 // export type definition of API
