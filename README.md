@@ -1,6 +1,6 @@
 # YSTV Crediter
 
-# NaSTA Award Winning
+# NaSTA & YUMA Award Winning
 
 To install dependencies:
 
